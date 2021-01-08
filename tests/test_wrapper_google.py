@@ -1,5 +1,5 @@
 from grandpy.wrapper_google import WrapperGoogle
-from tests.google_result import google_result, wrapper_result
+from tests.results_google import google_result, wrapper_result
 
 wgoogle = WrapperGoogle()
 

@@ -1,5 +1,5 @@
 from grandpy.wrapper_wiki import WrapperWiki
-from tests.wiki_result import wiki_pageid_result, wiki_text_result, location, coord, pageid
+from tests.results_wiki import wiki_pageid_result, wiki_text_result, location, coord, pageid
 
 wwiki = WrapperWiki()
 

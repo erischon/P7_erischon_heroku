@@ -16,11 +16,6 @@ $(document).ready(function(){
                 // Show loader
                 $("#loader").show();
                 $("#responseElement").hide();
-                // $("#result_query").html("")
-                $("#result_name").html("")
-                $("#result_address").html("")
-                $("#result_wiki_title").html("")
-                $("#result_wiki_text").html("")
                },
             
             success: function(res){

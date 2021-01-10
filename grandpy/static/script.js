@@ -27,14 +27,14 @@ $(document).ready(function(){
                     initMap(res)
                 }
                 else {
-                    $("#result_name").html("Désolé je n'ai pas de réponse.");
+                    $("#result_name").append("Désolé je n'ai pas de réponse.");
                 }
 
                 if (res["wresult"] == true) {
                     wikiResponse(res)
                 }
                 else {
-                    $("#result_wiki").html("Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...");
+                    $("#result_wiki").append("Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...");
                 }                
             },
 
@@ -48,22 +48,22 @@ $(document).ready(function(){
 })
 
 function response(res) {
-    $("#result_query").html(
+    $("#result_query").append(
         "Vous m'avez questionnez à propos de : " + "<strong>" + res["query"] + "</strong>"
         );
-    $("#result_name").html(
+    $("#result_name").append(
         "Voici ce que j'ai trouvé dans mes petites fiches bien rangées : " + "<strong>" + res["ginfos"]["name"] + "</strong>"
         );
-    $("#result_address").html(
+    $("#result_address").append(
         "Et c'est à cette adresse : " + "<strong>" + res["ginfos"]["formatted_address"] + "</strong>"
         );
 }
 
 function wikiResponse(res) {
-    $("#result_wiki_title").html(
+    $("#result_wiki_title").append(
         "J'ai une petite info sur " + res["wtitle"] + " :"
         );
-    $("#result_wiki_text").html(
+    $("#result_wiki_text").append(
         "Peut-être ne le saviez-vous pas, mais " + "<strong>" + res["wtext"] + "</strong>" + " Intéressant non ?!"
         );
 }

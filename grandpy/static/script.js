@@ -16,6 +16,11 @@ $(document).ready(function(){
                 // Show loader
                 $("#loader").show();
                 $("#responseElement").hide();
+
+                // Clear all the ID's
+                var items = document.querySelectorAll("#result_query, #result_name, #result_address, #result_wiki_title, #result_wiki_text, #map");
+                for (var i = 0; i < items.length; i++)
+                    {items[i].innerHTML = "";}
                },
             
             success: function(res){

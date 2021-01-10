@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request, jsonify
+from flask_wtf.csrf import CSRFProtect
 
 from .main import GrandPy
 from .gp_parser import GPParser
 from .config import Config
 
 app = Flask(__name__)
+
+config = Config()
+app.config['SECRET_KEY'] = config.SECRET_KEY
 
 @app.route('/')
 def index():

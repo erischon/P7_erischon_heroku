@@ -20,7 +20,6 @@ $(document).ready(function(){
             
             success: function(res){
                 // Show response
-
                 $("#responseElement").show();
 
                 if (res["gresult"] == true) {

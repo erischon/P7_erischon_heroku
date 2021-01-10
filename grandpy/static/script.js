@@ -19,8 +19,9 @@ $(document).ready(function(){
 
                 // Clear all the ID's
                 var items = document.querySelectorAll("#result_query, #result_name, #result_address, #result_wiki_title, #result_wiki_text, #map");
-                for (var i = 0; i < items.length; i++)
-                    {items[i].innerHTML = "";}
+                for (var i = 0; i < items.length; i++) {
+                    items[i].innerHTML = "";
+                }
                },
             
             success: function(res){
@@ -30,17 +31,19 @@ $(document).ready(function(){
                 if (res["gresult"] == true) {
                     response(res)
                     initMap(res)
+
+                    if (res["wresult"] == true) {
+                        wikiResponse(res)
+                    }
+                    else {
+                        document.getElementById('result_wiki').innerHTML = "Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...";
+                        return
+                    }           
                 }
                 else {
                     document.getElementById('result_name').innerHTML = "Désolé je n'ai pas de réponse.";
-                }
-
-                if (res["wresult"] == true) {
-                    wikiResponse(res)
-                }
-                else {
-                    document.getElementById('result_wiki').innerHTML = "Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...";
-                }                
+                    return
+                }      
             },
 
             complete:function(data){

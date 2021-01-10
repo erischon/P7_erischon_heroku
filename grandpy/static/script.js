@@ -15,6 +15,12 @@ $(document).ready(function(){
             beforeSend: function(){
                 // Show loader
                 $("#loader").show();
+                $("#responseElement").hide();
+                // $("#result_query").html("")
+                $("#result_name").html("")
+                $("#result_address").html("")
+                $("#result_wiki_title").html("")
+                $("#result_wiki_text").html("")
                },
             
             success: function(res){
@@ -27,14 +33,14 @@ $(document).ready(function(){
                     initMap(res)
                 }
                 else {
-                    $("#result_name").append("Désolé je n'ai pas de réponse.");
+                    document.getElementById('result_name').innerHTML = "Désolé je n'ai pas de réponse.";
                 }
 
                 if (res["wresult"] == true) {
                     wikiResponse(res)
                 }
                 else {
-                    $("#result_wiki").append("Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...");
+                    document.getElementById('result_wiki').innerHTML = "Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...";
                 }                
             },
 
@@ -48,24 +54,19 @@ $(document).ready(function(){
 })
 
 function response(res) {
-    $("#result_query").append(
-        "Vous m'avez questionnez à propos de : " + "<strong>" + res["query"] + "</strong>"
-        );
-    $("#result_name").append(
-        "Voici ce que j'ai trouvé dans mes petites fiches bien rangées : " + "<strong>" + res["ginfos"]["name"] + "</strong>"
-        );
-    $("#result_address").append(
-        "Et c'est à cette adresse : " + "<strong>" + res["ginfos"]["formatted_address"] + "</strong>"
-        );
+    document.getElementById('result_query').innerHTML = 
+        "Vous m'avez questionnez à propos de : " + "<strong>" + res["query"] + "</strong>";
+    document.getElementById('result_name').innerHTML =
+        "Voici ce que j'ai trouvé dans mes petites fiches bien rangées : " + "<strong>" + res["ginfos"]["name"] + "</strong>";
+    document.getElementById('result_address').innerHTML =
+        "Et c'est à cette adresse : " + "<strong>" + res["ginfos"]["formatted_address"] + "</strong>";
 }
 
 function wikiResponse(res) {
-    $("#result_wiki_title").append(
-        "J'ai une petite info sur " + res["wtitle"] + " :"
-        );
-    $("#result_wiki_text").append(
-        "Peut-être ne le saviez-vous pas, mais " + "<strong>" + res["wtext"] + "</strong>" + " Intéressant non ?!"
-        );
+    document.getElementById('result_wiki_title').innerHTML =
+        "J'ai une petite info sur " + res["wtitle"] + " :";
+    document.getElementById('result_wiki_text').innerHTML =
+        "Peut-être ne le saviez-vous pas, mais " + "<strong>" + res["wtext"] + "</strong>" + " Intéressant non ?!";
 }
 
 function initMap(res) {

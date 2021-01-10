@@ -16,3 +16,6 @@ class Config:
 
         #
         self.WURL = "https://fr.wikipedia.org/w/api.php"
+
+        #
+        self.SECRET_KEY = os.getenv("SECRET_KEY")

@@ -28,10 +28,6 @@ $(document).ready(function(){
                 }
                 else {
                     document.getElementById('result_name').innerHTML = "Désolé je n'ai pas de réponse.";
-                    function(data){
-                        // Hide loader
-                        $("#loader").hide();
-                       }
                 }
 
                 if (res["wresult"] == true) {
@@ -39,10 +35,6 @@ $(document).ready(function(){
                 }
                 else {
                     document.getElementById('result_wiki').innerHTML = "Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...";
-                    function(data){
-                        // Hide loader
-                        $("#loader").hide();
-                       }
                 }                
             },
 

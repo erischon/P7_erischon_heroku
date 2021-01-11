@@ -13,7 +13,7 @@ $(document).ready(function(){
             data:{text:textinlivebox},
 
             beforeSend: function(){
-                // Show loader
+                // Show loader & hide sections
                 $("#loader").show();
                 $("#responseElement").hide();
                 $("#responseNone").hide();
@@ -29,27 +29,27 @@ $(document).ready(function(){
                 // Show response
 
                 console.log(res);
-
+                // If there is no response
                 if (res["parsing"] == false) {
                     $("#responseNone").show();
                     $("#result_none").text(
                         "Désolé je n'ai pas de réponse pour cette requête.");
                 }
-
+                // If there is a response from Google
                 if (res["gresult"] == true) {            
                     $("#responseElement").show();
                     response(res)
                     initMap(res)
-
+                    // If there is a response from Wikie
                     if (res["wresult"] == true) {
                         wikiResponse(res)
                     }
-
+                    // If there is no response from Wiki
                     else {
                         $("#result_wiki").text("Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...");
                     }          
                 }
-
+                // If there is no response from Google
                 else {
                     $("#responseNone").show();
                     $("#result_none").text("Désolé je n'ai pas de réponse pour cette requête.");

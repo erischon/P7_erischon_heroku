@@ -40,7 +40,7 @@ $(document).ready(function(){
                     $("#responseElement").show();
                     response(res)
                     initMap(res)
-                    // If there is a response from Wikie
+                    // If there is a response from Wiki
                     if (res["wresult"] == true) {
                         wikiResponse(res)
                     }

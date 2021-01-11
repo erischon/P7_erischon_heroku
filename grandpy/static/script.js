@@ -52,7 +52,7 @@ $(document).ready(function(){
 
                 else {
                     $("#responseNone").show();
-                    $("#result_name").text("Désolé je n'ai pas de réponse.");
+                    $("#result_none").text("Désolé je n'ai pas de réponse pour cette requête.");
                     }
             },
 

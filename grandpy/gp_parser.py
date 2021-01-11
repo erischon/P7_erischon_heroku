@@ -48,9 +48,11 @@ class GPParser:
         searched_words = " "
         return searched_words.join(value)
 
+
 if __name__ == "__main__":
+
     parser = GPParser()
-    
+
     # === Tests of methods ===
     # print(parser.lowercase("ToTO"))
     # print(parser.punctuation("hop,hop, hop, zut: ça v;a plus! ..../_ super..."))

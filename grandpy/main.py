@@ -18,28 +18,28 @@ class GrandPy:
         Act: I create the answer
         Out: the result informations (dict)
         Out Ex: {
-            'query': 'mairie de thiais', 
-            'parsing': True, 
-            'parsing_result': 'mairie thiais wiki', 
-            'gresult': True, 
+            'query': 'mairie de thiais',
+            'parsing': True,
+            'parsing_result': 'mairie thiais wiki',
+            'gresult': True,
             'ginfos': {
-                'name': 'Thiais', 
-                'formatted_address': '94320 Thiais, France', 
+                'name': 'Thiais',
+                'formatted_address': '94320 Thiais, France',
                 'types': ['locality', 'political']
-                }, 
+                },
             'gcoord': {
                 'location': {
-                    'lat': 48.760344, 
+                    'lat': 48.760344,
                     'lng': 2.387405}
-                }, 
-            'gcoord_lat': 48.760344, 
-            'gcoord_lng': 2.387405, 
-            'wresult': True, 
-            'wpageid': 8110453, 
+                },
+            'gcoord_lat': 48.760344,
+            'gcoord_lng': 2.387405,
+            'wresult': True,
+            'wpageid': 8110453,
             'wtext': "L'église Saint-Leu-Saint-Gilles de Thiais est une église catholique 
-située à Thiais, en France.", 
+située à Thiais, en France.",
             'wtitle': 'Église Saint-Leu-Saint-Gilles de Thiais'
-        } 
+        }
         """
         response = {}
         response["query"] = query
@@ -55,7 +55,7 @@ située à Thiais, en France.",
         # Google Result
         google_result = self.wgoogle.request(parsing_result)
 
-        if google_result == None:
+        if google_result is None:
             response["gresult"] = False
             return response
         response["gresult"] = True
@@ -68,7 +68,7 @@ située à Thiais, en France.",
         response["gcoord_lat"] = google_location_result.get('location').get('lat')
         response["gcoord_lng"] = google_location_result.get('location').get('lng')
 
-        # Wiki result      
+        # Wiki result
         coord_result = self.wwiki.location_to_coord(google_location_result)
         wiki_pageid_result = self.wwiki.coord_to_pageid(coord_result)
         if not wiki_pageid_result:

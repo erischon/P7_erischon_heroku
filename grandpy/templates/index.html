@@ -24,12 +24,27 @@
 
     <section id="responseElement" style='display: none;'>
         <div class="response">
-            <div id="result_query" class="result query"></div>
-            <div id="result_name" class="result name"></div>
-            <div id="result_address" class="result address"></div>
+            <div class="result query">
+                Vous m'avez questionnez à propos de : 
+                <strong id="result_query"></strong>
+            </div>
+            <div class="result name">
+                Voici ce que j'ai trouvé dans mes petites fiches bien rangées :
+                <strong id="result_name"></strong>
+            </div>
+            <div class="result address">
+                Et c'est à cette adresse :
+                <strong id="result_address"></strong>
+            </div>
             <div id="result_wiki_title" class="result wiki-title"></div>
             <div id="result_wiki_text" class="result wiki-text"></div>
             <div id="map" class="res-map"></div>
+        </div>
+    </section>
+
+    <section id="responseNone" style='display: none;'>
+        <div>
+            <div id="result_none" class="noResult"></div>
         </div>
     </section>
 

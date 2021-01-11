@@ -21,15 +21,15 @@ class WrapperWiki:
         return f"{location.get('location').get('lat')}|{location.get('location').get('lng')}"
 
     def coord_to_pageid(self, coord):
-        """ 
+        """
         In: the formated coordinates (str)
         Act: I request the Wiki API for a pageid
         Out: the pageid (int)
         """
         try:
             request = requests.get(
-                url = self.URL, 
-                params = {
+                url=self.URL,
+                params={
                     "action": "query",
                     "list": "geosearch",
                     "gscoord": coord,
@@ -53,15 +53,15 @@ class WrapperWiki:
             print(exception)
 
     def wiki_text(self, pageid="1509079"):
-        """ 
+        """
         In: a pageid (int)
         Act: I request the Wiki API for title and text
         Out: the title of wiki page, and the first sentences.
         """
         try:
             request = requests.get(
-                url = self.URL, 
-                params = {
+                url=self.URL,
+                params={
                     "action": "query",
                     "prop": "extracts",
                     "exsentences": 1,
@@ -84,7 +84,7 @@ class WrapperWiki:
 
         except requests.RequestException as exception:
             print(exception)
-    
+
 
 if __name__ == "__main__":
     wwiki = WrapperWiki()

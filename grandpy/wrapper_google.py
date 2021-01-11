@@ -12,25 +12,25 @@ class WrapperGoogle:
         self.URL = config.GURL
         self.HEADERS = {"User-Agent": config.UAGENT}
         self.GKEY = config.GKEY_B
-        self.PARAMS = {"key": config.GKEY_B}        
+        self.PARAMS = {"key": config.GKEY_B}
 
     def request(self, query="thiais"):
-        """ I make the request to Google place. 
+        """ I make the request to Google place.
         In: the parsed question (str)
         Act: I request the Google Place API
         Out: the result (list)
         """
         try:
             request = requests.get(
-                url = self.URL, 
-                params = {
+                url=self.URL,
+                params={
                     "key": self.GKEY,
                     "query": query
-                }, 
-                headers = self.HEADERS
+                },
+                headers=self.HEADERS
             )
             results = request.json()
-            
+
             if results.get('status') != 'OK':
                 results = None
                 return results
@@ -45,13 +45,13 @@ class WrapperGoogle:
         return len(results)
 
     def coordinates(self, results):
-        """ I retrieve the coordinates of the place. 
+        """ I retrieve the coordinates of the place.
         In: the results of Google request (dict)
         Act: I create a dict with latitude and longitude
         Out: latitute and longitude from the viewport northeast
         Out Ex: {
             'location': {
-                'lat': 48.760344, 
+                'lat': 48.760344,
                 'lng': 2.387405
                     }
                 }
@@ -68,8 +68,8 @@ class WrapperGoogle:
         Out: the informations of the place (dict)
         Out Ex:
         {
-            'name': 'Thiais', 
-            'formatted_address': '94320 Thiais, France', 
+            'name': 'Thiais',
+            'formatted_address': '94320 Thiais, France',
             'types': ['locality', 'political']
         }
         """

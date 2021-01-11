@@ -122,6 +122,13 @@ main h2 {
     width: 100%;
 }
 
+#result_none {
+    margin-top: 4em;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 700;
+}
+
 /* === Footer section === */
 
 footer {

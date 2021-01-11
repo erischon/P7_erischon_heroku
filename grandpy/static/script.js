@@ -16,6 +16,7 @@ $(document).ready(function(){
                 // Show loader
                 $("#loader").show();
                 $("#responseElement").hide();
+                $("#responseNone").hide();
 
                 // Clear all the ID's
                 var items = document.querySelectorAll("#result_query, #result_name, #result_address, #result_wiki_title, #result_wiki_text, #map");
@@ -26,24 +27,33 @@ $(document).ready(function(){
             
             success: function(res){
                 // Show response
-                $("#responseElement").show();
 
-                if (res["gresult"] == true) {
+                console.log(res);
+
+                if (res["parsing"] == false) {
+                    $("#responseNone").show();
+                    $("#result_none").text(
+                        "Désolé je n'ai pas de réponse pour cette requête.");
+                }
+
+                if (res["gresult"] == true) {            
+                    $("#responseElement").show();
                     response(res)
                     initMap(res)
 
                     if (res["wresult"] == true) {
                         wikiResponse(res)
                     }
+
                     else {
-                        document.getElementById('result_wiki').innerHTML = "Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...";
-                        return
-                    }           
+                        $("#result_wiki").text("Désolé, je n'ai pas trouvé d'histoire intéressante à raconter...");
+                    }          
                 }
+
                 else {
-                    document.getElementById('result_name').innerHTML = "Désolé je n'ai pas de réponse.";
-                    return
-                }      
+                    $("#responseNone").show();
+                    $("#result_name").text("Désolé je n'ai pas de réponse.");
+                    }
             },
 
             complete:function(data){
@@ -56,19 +66,18 @@ $(document).ready(function(){
 })
 
 function response(res) {
-    document.getElementById('result_query').innerHTML = 
-        "Vous m'avez questionnez à propos de : " + "<strong>" + res["query"] + "</strong>";
-    document.getElementById('result_name').innerHTML =
-        "Voici ce que j'ai trouvé dans mes petites fiches bien rangées : " + "<strong>" + res["ginfos"]["name"] + "</strong>";
-    document.getElementById('result_address').innerHTML =
-        "Et c'est à cette adresse : " + "<strong>" + res["ginfos"]["formatted_address"] + "</strong>";
+    $("#result_query").text(res["query"]);
+    $("#result_name").text(res["ginfos"]["name"]);
+    $("#result_address").text(res["ginfos"]["formatted_address"]);
 }
 
 function wikiResponse(res) {
-    document.getElementById('result_wiki_title').innerHTML =
-        "J'ai une petite info sur " + res["wtitle"] + " :";
-    document.getElementById('result_wiki_text').innerHTML =
-        "Peut-être ne le saviez-vous pas, mais " + "<strong>" + res["wtext"] + "</strong>" + " Intéressant non ?!";
+    $("#result_wiki_title").text(
+        "J'ai une petite info sur " + res["wtitle"] + " :"
+        );
+    $("#result_wiki_text").text(
+        "Peut-être ne le saviez-vous pas, mais " + res["wtext"] + " Intéressant non ?!"
+        );
 }
 
 function initMap(res) {
